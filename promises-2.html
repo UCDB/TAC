@@ -1,0 +1,36 @@
+
+<html>
+    <head>
+    <script>
+
+    const KEY_GIPHY= 'Ewt9hKgWbhs1VwhkGu9X79r37egh0dyU';
+    let query = 'bruce lee';
+    let limit = 5;
+    const API_GIPHY_URL= `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${KEY_GIPHY}&limit=${limit}`;
+
+    fetch (API_GIPHY_URL)
+    .then(response=>response.json())
+    .then(json=>{
+        json.data.forEach(element => 
+            createImage(element)
+        );
+    })
+    .catch (err=> console.log(`Erro: ${err}`))
+
+    function createImage(element){
+        console.log(element)
+        let image = document.createElement("img");
+            image.setAttribute("src", element.images.original.url);
+            image.setAttribute("width", "300");
+            image.setAttribute("title", element.title);
+            document.body.appendChild(image);
+    }
+    </script>
+
+    </head>
+
+<body>
+
+  
+</body>
+</html>

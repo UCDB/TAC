@@ -1,75 +1,86 @@
-<script>
-function somarParcelas(arrParc,f,fail){
- 
-    let soma =0;
-    for (let i=0;i<arrParc.length; i++){
-      if (isNaN(arrParc[i])) fail("Erro: Array deve conter apenas letras");
-      soma+=arrParc[i];
-    }
+
+<html>
+  <head>
+
+  <script>
+    function somarParcelas(arrParc,f,fail){
     
-    f(soma)
-  
-  }
-  
-  function gerarProposta(somaDivida, juros, qtdParcelas, f ){
-    
-    let arr = [];
-    let valorParc = (somaDivida  + (somaDivida * juros/100) )/qtdParcelas;
-   
-    for (let i=0;i<qtdParcelas; i++){
-     
-      arr.push(valorParc);
-    } 
-    
-    let novaSoma = valorParc* qtdParcelas;
-    
-    let objProposta =  { arrProposta:arr, somaDivida:somaDivida, novaSoma:novaSoma } ;
-    
-    f(objProposta);
-  }
-  
-  function aceiteProposta(objProposta,f){
-    
-    console.log(`Mostrando a proposta cliente:${objProposta.arrProposta}
-        A divida original:${objProposta.somaDivida}
-        O novo valor: ${objProposta.novaSoma}
-        Valor do Juros: ${objProposta.novaSoma  - objProposta.somaDivida}`);
-    
-    
-    let aceitou =false;
-    
-    f(aceitou);
-    
-  }
-  
-  
-  let arrParcelas = [100, 150, 200, 400,"ç"];
-  
-  somarParcelas(arrParcelas, function(soma){
-    
-    let qtdParcela =10;
-    let taxaJuros  =5;
-    
-    gerarProposta(soma, taxaJuros , qtdParcela,  function(objProposta){
-       
-      aceiteProposta(objProposta,  function (aceitou){
+        let soma =0;
+        for (let i=0;i<arrParc.length; i++){
+          if (isNaN(arrParc[i])) fail("Erro: Array deve conter apenas letras");
+          soma+=arrParc[i];
+        }
         
-        console.log( aceitou?"Aceitado":"Recusado"  )
+        f(soma)
+      
+      }
+      
+      function gerarProposta(somaDivida, juros, qtdParcelas, f ){
+        
+        let arr = [];
+        let valorParc = (somaDivida  + (somaDivida * juros/100) )/qtdParcelas;
+      
+        for (let i=0;i<qtdParcelas; i++){
+        
+          arr.push(valorParc);
+        } 
+        
+        let novaSoma = valorParc* qtdParcelas;
+        
+        let objProposta =  { arrProposta:arr, somaDivida:somaDivida, novaSoma:novaSoma } ;
+        
+        f(objProposta);
+      }
+      
+      function aceiteProposta(objProposta,f){
+        
+        console.log(`Mostrando a proposta cliente:${objProposta.arrProposta}
+            A divida original:${objProposta.somaDivida}
+            O novo valor: ${objProposta.novaSoma}
+            Valor do Juros: ${objProposta.novaSoma  - objProposta.somaDivida}`);
+        
+        
+        let aceitou =false;
+        
+        f(aceitou);
+        
+      }
+      
+      
+      let arrParcelas = [100, 150, 200, 400,"ç"];
+      
+      somarParcelas(arrParcelas, function(soma){
+        
+        let qtdParcela =10;
+        let taxaJuros  =5;
+        
+        gerarProposta(soma, taxaJuros , qtdParcela,  function(objProposta){
+          
+          aceiteProposta(objProposta,  function (aceitou){
+            
+            console.log( aceitou?"Aceitado":"Recusado"  )
+          
+          }, function(err){
+              console.log("Não foi possivel enviar a proposta pro cliente:"+err)
+        
+          })
+          
+        }, function(err){
+            console.log("Nao foi possivel gerar a proposta:"+err)
+        
+          })
       
       }, function(err){
-          console.log("Não foi possivel enviar a proposta pro cliente:"+err)
-    
-       })
-      
-    }, function(err){
-        console.log("Nao foi possivel gerar a proposta:"+err)
-    
+          console.log("Nao foi possivel realiza a soma:"+err)
+        
       })
    
-  }, function(err){
-      console.log("Nao foi possivel realiza a soma:"+err)
+      //somarParcelas(arrParc, (soma)=>alert (soma))
+    </script>
+
+  </head>
+
+  <body>
     
-  })
-  
-  //somarParcelas(arrParc, (soma)=>alert (soma))
-</script>
+  </body>
+</html>
