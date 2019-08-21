@@ -1,0 +1,32 @@
+
+<script>
+
+//hoisting
+n = 10;
+var n;
+console.log(n)
+
+//hoisting não funciona com classes
+class Pessoa{
+  constructor(nome, sobreNome,email){
+    this.nome = nome;
+    this.sobreNome = sobreNome;
+    this.email = email;
+  }
+  
+  _nomeCompleto (){
+    return `${this.nome} ${this.sobreNome}`
+  }
+  
+  getDados (){
+    return (`${this._nomeCompleto()} 
+${this.email}`)
+  }
+}
+
+var p1 = new Pessoa('Vimerson', 'Bento','vimerson@ucdb.br');
+console.log(p1)
+console.log(p1._nomeCompleto())
+console.log(p1.getDados())
+
+</script>

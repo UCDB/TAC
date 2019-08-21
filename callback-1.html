@@ -1,0 +1,46 @@
+<script>
+function somarParcelas (arrParc,f){
+  let soma = 0;
+  for (let i=0; i<arrParc.length; i++){
+    soma+=arrParc[i];
+  }
+  f(soma);
+}
+
+let parcelasVencidas = [100, 150, 200, 400];
+
+function mostrar (soma){
+  console.log(soma+100);
+}
+
+function gerarProposta(somaDivida, f) {
+  let qntdParcelas = 10;
+  let arr = [];
+  let valorParcela = somaDivida/qntdParcelas;
+  for (let i=0; i<qntdParcelas; i++){
+    arr.push(valorParcela);
+  }
+  f(arr);
+}
+
+somarParcelas(parcelasVencidas, mostrar);
+
+somarParcelas(parcelasVencidas, (soma)=>
+  window.alert(soma)
+)
+
+function aceiteProposta(arrProposta,f){
+  console.log("Mostrando a proposta cliente: "+arrProposta);
+  let aceitou = true;
+  f(aceitou);
+}
+
+somarParcelas(parcelasVencidas, function (soma){
+     gerarProposta(soma, function(arrProposta){
+       aceiteProposta(arrProposta, function(aceitou){
+          window.alert(aceitou?"Aceitado":"Recusado");
+          })
+       })
+     })
+
+</script>

@@ -1,0 +1,22 @@
+<script>
+var person = {
+    firstName: 'João',
+    lastName: 'da Silva',
+    age: 28,
+    favoritieColors: ['blue', 'red', 'green'],
+    fullName: function () {
+      return `${this.firstName} ${this.lastName}`
+    },
+    
+    adultHood: function(){
+      return this.age>=18
+    }
+  }
+  
+  console.log(person.fullName(), person.adultHood())
+  console.log(person["fullName"](), person["adultHood"]())
+  
+  
+ 
+  
+</script>

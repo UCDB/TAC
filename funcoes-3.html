@@ -1,0 +1,33 @@
+<script>
+//PARTE 3 - FUNCOES E OBJETOS
+  
+//funcao que tem objeto interno retornavel
+//nao precisa ser instanciado como um objeto
+function createNewPerson(){
+  let obj = {
+    firstName: "Milad",
+    lastName: "Roghanian",
+    fullName: function(){
+      return `${this.firstName} ${this.lastName}`
+    }
+  };
+  return obj
+}
+
+//funcao que nao tem objeto interno retornavel
+//precisa ser instanciado como um objeto
+function createSecNewPerson(fname, lname){
+  this.firstName= fname,
+  this.lastName= lname,
+  this.fullName= function(){
+    return `${this.firstName} ${this.lastName}`
+  }
+}
+var p1 = createNewPerson();
+var p2 = [];
+var r1 = new createSecNewPerson('Milad', 'Roghanian')
+p2.push(r1);
+
+console.log(p2[0].fullName());
+
+</script>
