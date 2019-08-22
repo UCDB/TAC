@@ -1,0 +1,85 @@
+<html>
+
+
+    <head>
+        <script>
+        
+        const clients = []
+
+            function createNewCliente(client){
+              
+              return new Promise(function (resolve, reject){
+
+                setTimeout( function(){
+                    clients.push(client)
+                
+                    let error = false;
+
+                    if (!error){
+                        resolve()
+                    }else{
+                        reject("Carambola Error")
+                    }
+                  
+              
+                } , 1000)
+
+              })
+              
+            }
+
+            function getClients(){
+
+              setTimeout(function (){
+
+                let output = "";
+                clients.forEach(function (cli, index){
+                        output += `<li>${cli.name}  | ${cli.email}`;
+
+                })
+
+               // document.body.innerHTML+= output;
+
+               document.getElementById("clients").innerHTML= output;
+                
+              } , 1000)  
+                
+            }
+
+            function save(){
+
+                let name =  document.getElementById ("name").value;
+                let email =  document.getElementById ("email").value;
+                
+
+                let promise1 = createNewCliente({name, email});
+
+                promise1.then(getClients).catch( (err)=> console.log(`Something went wrong! ${err}`) )
+            }
+
+          
+        </script>
+
+    </head>
+
+    <body>
+        <label> Name:</label>
+        <input type="text" id="name" >
+
+        <label> Email:</label>
+        <input type="text" id="email" >
+
+        <button id="add" onclick="save()">Save</button>
+        
+        <div id="clients">
+            
+
+        </div>
+
+
+    </body>
+
+    <script>
+      getClients();
+    </script>
+</html>

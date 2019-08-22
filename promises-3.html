@@ -1,0 +1,48 @@
+<html>
+
+
+    <head>
+        <script>
+        
+        const clients = [
+             {name:'Jão', email:'jao@gmail.com' } ,
+            {name:'Maria', email:'maria@gmail.com'} ]
+
+            function createNewCliente(client, f){
+                setTimeout( function(){
+                    clients.push(client)
+                    f()
+
+                } , 3000)
+              
+            }
+
+            function getClients(){
+
+              setTimeout(function (){
+
+                let output = "";
+                clients.forEach(function (cli, index){
+                        output += `<li>${cli.name}  | ${cli.email}`;
+
+                })
+
+                document.body.innerHTML= output;
+            
+              } , 1000)  
+                
+            }
+
+            createNewCliente({name:'Zé', email:'ze@gmail.com'},  getClients) 
+
+      
+        </script>
+
+    </head>
+
+    <body>
+        
+
+
+    </body>
+</html>
