@@ -3,9 +3,12 @@
     <head>
     <script>
 
+    function fetchImage(text='Bruce Lee', count=5){
+
+    
     const KEY_GIPHY= '';
-    let query = 'bruce lee';
-    let limit = 5;
+    let query = text;
+    let limit = count;
     const API_GIPHY_URL= `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${KEY_GIPHY}&limit=${limit}`;
 
     console.log("Before fetch Giphy")
@@ -22,21 +25,25 @@
         );
     })
     .catch (err=> console.log(`Erro Giphy: ${err}`))
+}
 
-    console.log("Before fetch Text ")
-    
-    fetch ("https://api.myjson.com/bins/1hkpaf")
-    .then (response => { 
-        console.log("Inside fetch Text first then")
-        return response.json() 
-    } )
-    .then( (json) => {
+   function findText(){
+        console.log("Before fetch Text ")
+        
+        fetch ("https://api.myjson.com/bins/1hkpaf")
+        .then (response => { 
+            console.log("Inside fetch Text first then")
+            return response.json() 
+        } )
+        .then( (json) => {
+            json.forEach( (element) => fetchImage(element.word,3))
+           // console.log("Inside fetch Text first then")
+            //console.log(json)
 
-        console.log("Inside fetch Text first then")
-        console.log(json)
+        })
+        .catch( (err)=> console.log (err) )
 
-    })
-    .catch( (err)=> console.log (err) )
+   }
 
 
     function createImage(element){
@@ -47,6 +54,8 @@
             image.setAttribute("title", element.title);
             document.body.appendChild(image);
     }
+
+    findText()
     </script>
 
     </head>

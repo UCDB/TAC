@@ -1,0 +1,51 @@
+
+<html>
+    <head>
+    <script>
+
+    async function fetchImage(text='Bruce Lee', count=5){
+
+        const KEY_GIPHY= '';
+        let query = text;
+        let limit = count;
+        const API_GIPHY_URL= `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${KEY_GIPHY}&limit=${limit}`;
+
+        console.log("Before fetch Giphy")
+        
+        //fech /then
+        let response = await fetch (API_GIPHY_URL);
+       //then
+        let json = await response.json()
+        //O que fazer com dados
+        json.data.forEach(element => 
+                createImage(element)
+        );
+        
+    }
+
+   async function findText(){    
+        let response =await fetch ("https://api.myjson.com/bins/1hkpaf")
+        let json = await response.json() ;
+        json.forEach( (element) => fetchImage(element.word,3))
+   }
+
+
+    function createImage(element){
+       // console.log(element)
+        let image = document.createElement("img");
+            image.setAttribute("src", element.images.original.url);
+            image.setAttribute("width", "300");
+            image.setAttribute("title", element.title);
+            document.body.appendChild(image);
+    }
+
+    findText()
+    </script>
+
+    </head>
+
+<body>
+
+  
+</body>
+</html>
